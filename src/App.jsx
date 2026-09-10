@@ -153,6 +153,161 @@ function OrbitSystem() {
   );
 }
 
+/* ── PHONE MOCKUP ── */
+function PhoneMockup({ children, active }) {
+  return (
+    <div className={`phone-frame ${active ? "phone-active" : ""}`}>
+      <div className="phone-notch" />
+      <div className="phone-screen">{children}</div>
+      <div className="phone-bar"><div className="phone-bar-line" /></div>
+    </div>
+  );
+}
+
+function ScreenDocuments() {
+  const docs = [
+    { icon: "📊", name: "Balancete Agosto/2026", date: "02/09/2026", tag: "Novo" },
+    { icon: "📄", name: "DARF IRPJ", date: "28/08/2026", tag: "" },
+    { icon: "📄", name: "Guia FGTS", date: "25/08/2026", tag: "" },
+    { icon: "📄", name: "DAS Simples Nacional", date: "20/08/2026", tag: "" },
+    { icon: "📊", name: "Balancete Julho/2026", date: "01/08/2026", tag: "Lido" },
+  ];
+  return (
+    <>
+      <div className="scr-header">
+        <span className="scr-greet">Meus Documentos</span>
+        <span className="scr-bell">🔔<span className="scr-badge">3</span></span>
+      </div>
+      <div className="scr-search">🔍 Buscar documento...</div>
+      <div className="scr-tabs"><span className="scr-tab active">Todos</span><span className="scr-tab">Fiscal</span><span className="scr-tab">Contábil</span></div>
+      {docs.map((d, i) => (
+        <div key={i} className="scr-row">
+          <span className="scr-row-icon">{d.icon}</span>
+          <div className="scr-row-info">
+            <span className="scr-row-name">{d.name}</span>
+            <span className="scr-row-date">{d.date}</span>
+          </div>
+          {d.tag && <span className={`scr-row-tag ${d.tag === "Novo" ? "tag-new" : "tag-read"}`}>{d.tag}</span>}
+        </div>
+      ))}
+    </>
+  );
+}
+
+function ScreenHolerites() {
+  const items = [
+    { month: "Agosto/2026", value: "R$ 3.450,00", status: "Disponível" },
+    { month: "Julho/2026", value: "R$ 3.450,00", status: "Visualizado" },
+    { month: "Junho/2026", value: "R$ 3.280,00", status: "Visualizado" },
+    { month: "Maio/2026", value: "R$ 3.280,00", status: "Visualizado" },
+  ];
+  return (
+    <>
+      <div className="scr-header">
+        <span className="scr-greet">Holerites</span>
+        <span className="scr-bell">👤</span>
+      </div>
+      <div className="scr-holerite-card">
+        <div className="scr-h-label">Último holerite</div>
+        <div className="scr-h-value">R$ 3.450,00</div>
+        <div className="scr-h-period">Agosto/2026 • Líquido</div>
+        <div className="scr-h-btn">Baixar PDF</div>
+      </div>
+      <div className="scr-h-title">Histórico</div>
+      {items.map((h, i) => (
+        <div key={i} className="scr-row">
+          <span className="scr-row-icon">💰</span>
+          <div className="scr-row-info">
+            <span className="scr-row-name">{h.month}</span>
+            <span className="scr-row-date">{h.value}</span>
+          </div>
+          <span className={`scr-row-tag ${h.status === "Disponível" ? "tag-new" : "tag-read"}`}>{h.status}</span>
+        </div>
+      ))}
+    </>
+  );
+}
+
+function ScreenNotifications() {
+  const notifs = [
+    { icon: "📄", text: "Novo balancete de Agosto disponível", time: "Há 2 horas", unread: true },
+    { icon: "💰", text: "Holerite de Agosto processado", time: "Há 5 horas", unread: true },
+    { icon: "⚠️", text: "DARF IRPJ vence em 3 dias", time: "Há 1 dia", unread: true },
+    { icon: "📄", text: "Guia FGTS disponível para download", time: "Há 2 dias", unread: false },
+    { icon: "💬", text: "Comunicado do escritório", time: "Há 3 dias", unread: false },
+  ];
+  return (
+    <>
+      <div className="scr-header">
+        <span className="scr-greet">Notificações</span>
+        <span className="scr-bell">✓</span>
+      </div>
+      <div className="scr-notif-count">3 novas notificações</div>
+      {notifs.map((n, i) => (
+        <div key={i} className={`scr-notif ${n.unread ? "scr-notif-unread" : ""}`}>
+          <span className="scr-notif-icon">{n.icon}</span>
+          <div className="scr-notif-body">
+            <span className="scr-notif-text">{n.text}</span>
+            <span className="scr-notif-time">{n.time}</span>
+          </div>
+          {n.unread && <span className="scr-notif-dot" />}
+        </div>
+      ))}
+    </>
+  );
+}
+
+function ScreenProfile() {
+  return (
+    <>
+      <div className="scr-header"><span className="scr-greet">Perfil</span><span className="scr-bell">⚙️</span></div>
+      <div className="scr-profile-top">
+        <div className="scr-avatar">EC</div>
+        <div className="scr-profile-name">Empresa Exemplo</div>
+        <div className="scr-profile-cnpj">CNPJ: 12.345.678/0001-90</div>
+      </div>
+      <div className="scr-profile-stats">
+        <div className="scr-stat"><div className="scr-stat-n">24</div><div className="scr-stat-l">Documentos</div></div>
+        <div className="scr-stat"><div className="scr-stat-n">8</div><div className="scr-stat-l">Holerites</div></div>
+        <div className="scr-stat"><div className="scr-stat-n">3</div><div className="scr-stat-l">Pendentes</div></div>
+      </div>
+      <div className="scr-profile-menu">
+        <div className="scr-p-item">👤 Dados da empresa</div>
+        <div className="scr-p-item">🔒 Alterar senha</div>
+        <div className="scr-p-item">🔔 Preferências de notificação</div>
+        <div className="scr-p-item">📧 Email cadastrado</div>
+        <div className="scr-p-item scr-p-logout">🚪 Sair</div>
+      </div>
+    </>
+  );
+}
+
+function PhoneShowcase() {
+  const [active, setActive] = useState(0);
+  const screens = [
+    { label: "Documentos", comp: <ScreenDocuments /> },
+    { label: "Holerites", comp: <ScreenHolerites /> },
+    { label: "Notificações", comp: <ScreenNotifications /> },
+    { label: "Perfil", comp: <ScreenProfile /> },
+  ];
+  return (
+    <div className="showcase">
+      <Reveal delay={0.2}>
+        <div className="showcase-tabs">
+          {screens.map((s, i) => (
+            <button key={i} className={`showcase-tab ${active === i ? "active" : ""}`} onClick={() => setActive(i)}>{s.label}</button>
+          ))}
+        </div>
+      </Reveal>
+      <Reveal delay={0.3}>
+        <div className="showcase-phone-wrap">
+          <PhoneMockup active>{screens[active].comp}</PhoneMockup>
+        </div>
+      </Reveal>
+    </div>
+  );
+}
+
 /* ── PAGES ── */
 function Home({ goTo }) {
   return (
@@ -196,6 +351,13 @@ function Home({ goTo }) {
             { icon: "💬", title: "Comunicados Diretos", desc: "Receba avisos e comunicados do escritório sem depender de e-mail ou WhatsApp." },
           ].map(f => (<div key={f.title} className="f-card"><div className="f-icon">{f.icon}</div><h3>{f.title}</h3><p>{f.desc}</p></div>))}
         </Stagger>
+      </section>
+
+      <section className="sec" style={{ paddingTop: 40 }}>
+        <Reveal><div className="sec-label" style={{ textAlign: "center" }}>Conheça o app</div></Reveal>
+        <Reveal delay={0.1}><div className="sec-title" style={{ textAlign: "center", margin: "0 auto" }}>Veja o Orbita em ação</div></Reveal>
+        <Reveal delay={0.15}><div className="sec-desc" style={{ textAlign: "center", margin: "14px auto 0" }}>Navegue pelas telas e descubra como é simples acessar seus documentos contábeis.</div></Reveal>
+        <PhoneShowcase />
       </section>
 
       <section className="sec" style={{ paddingTop: 20 }}>
@@ -569,6 +731,85 @@ const css = `
   .ft-col a:hover { color: var(--text); padding-left: 4px; }
   .ft-bottom { max-width: 1060px; margin: 36px auto 0; padding-top: 20px; border-top: 1px solid var(--border);
     display: flex; justify-content: space-between; font-size: 12px; color: var(--text-muted); flex-wrap: wrap; gap: 8px; }
+
+  /* PHONE MOCKUP */
+  .showcase { margin-top: 48px; display: flex; flex-direction: column; align-items: center; }
+  .showcase-tabs { display: flex; gap: 6px; margin-bottom: 32px; background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 4px; }
+  .showcase-tab { padding: 8px 18px; border-radius: 7px; border: none; background: none; color: var(--text-sub);
+    font-size: 13px; font-weight: 500; font-family: var(--font-b); cursor: pointer; transition: all 0.3s; }
+  .showcase-tab.active { background: var(--gradient); color: #fff; }
+  .showcase-tab:hover:not(.active) { color: var(--text); }
+  .showcase-phone-wrap { display: flex; justify-content: center; }
+
+  .phone-frame { width: 280px; border-radius: 32px; background: #0c1020; border: 2px solid rgba(78,159,255,0.12);
+    padding: 12px; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(78,159,255,0.05);
+    transition: all 0.5s cubic-bezier(0.4,0,0.2,1); }
+  .phone-active { border-color: rgba(78,159,255,0.2); box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 60px rgba(78,159,255,0.08); }
+  .phone-notch { width: 80px; height: 6px; background: #0c1020; border-radius: 0 0 10px 10px; margin: 0 auto 8px;
+    border: 1px solid rgba(78,159,255,0.08); border-top: none; }
+  .phone-screen { background: #080c18; border-radius: 20px; min-height: 480px; padding: 16px; overflow: hidden; }
+  .phone-bar { display: flex; justify-content: center; padding: 8px 0 4px; }
+  .phone-bar-line { width: 100px; height: 4px; border-radius: 2px; background: rgba(78,159,255,0.15); }
+
+  /* SCREEN SHARED */
+  .scr-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+  .scr-greet { font-family: var(--font-h); font-size: 16px; font-weight: 700; color: var(--text); }
+  .scr-bell { font-size: 16px; position: relative; }
+  .scr-badge { position: absolute; top: -6px; right: -8px; background: #ef4444; color: #fff; font-size: 9px;
+    font-weight: 700; width: 15px; height: 15px; border-radius: 50%; display: flex; align-items: center;
+    justify-content: center; font-family: var(--font-b); }
+  .scr-search { padding: 8px 12px; border-radius: 8px; background: rgba(78,159,255,0.06); border: 1px solid var(--border);
+    font-size: 11.5px; color: var(--text-muted); margin-bottom: 12px; }
+  .scr-tabs { display: flex; gap: 4px; margin-bottom: 14px; }
+  .scr-tab { padding: 5px 12px; border-radius: 6px; font-size: 11px; font-weight: 500; color: var(--text-sub);
+    background: rgba(78,159,255,0.04); font-family: var(--font-b); }
+  .scr-tab.active { background: var(--gradient); color: #fff; }
+
+  /* ROW */
+  .scr-row { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid rgba(78,159,255,0.05); }
+  .scr-row-icon { font-size: 16px; }
+  .scr-row-info { flex: 1; display: flex; flex-direction: column; }
+  .scr-row-name { font-size: 12px; font-weight: 500; color: var(--text); }
+  .scr-row-date { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+  .scr-row-tag { font-size: 9px; font-weight: 600; padding: 2px 7px; border-radius: 4px; font-family: var(--font-b); }
+  .tag-new { background: rgba(78,159,255,0.15); color: var(--accent); }
+  .tag-read { background: rgba(255,255,255,0.05); color: var(--text-muted); }
+
+  /* HOLERITE */
+  .scr-holerite-card { background: var(--gradient); border-radius: 14px; padding: 18px; margin-bottom: 16px; }
+  .scr-h-label { font-size: 10px; color: rgba(255,255,255,0.7); margin-bottom: 4px; }
+  .scr-h-value { font-family: var(--font-h); font-size: 26px; font-weight: 700; color: #fff; }
+  .scr-h-period { font-size: 10px; color: rgba(255,255,255,0.6); margin-top: 2px; }
+  .scr-h-btn { margin-top: 12px; background: rgba(255,255,255,0.15); border-radius: 8px; padding: 7px;
+    text-align: center; font-size: 11px; font-weight: 600; color: #fff; }
+  .scr-h-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 8px; font-family: var(--font-h); }
+
+  /* NOTIFICATIONS */
+  .scr-notif-count { font-size: 11px; color: var(--accent); margin-bottom: 12px; font-weight: 500; }
+  .scr-notif { display: flex; align-items: flex-start; gap: 10px; padding: 10px 0; border-bottom: 1px solid rgba(78,159,255,0.05); }
+  .scr-notif-unread { background: rgba(78,159,255,0.03); margin: 0 -16px; padding: 10px 16px; }
+  .scr-notif-icon { font-size: 16px; margin-top: 2px; }
+  .scr-notif-body { flex: 1; }
+  .scr-notif-text { font-size: 11.5px; color: var(--text); line-height: 1.4; display: block; }
+  .scr-notif-time { font-size: 9.5px; color: var(--text-muted); margin-top: 3px; display: block; }
+  .scr-notif-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); margin-top: 6px; flex-shrink: 0; }
+
+  /* PROFILE */
+  .scr-profile-top { text-align: center; margin-bottom: 16px; }
+  .scr-avatar { width: 56px; height: 56px; border-radius: 50%; background: var(--gradient); display: flex;
+    align-items: center; justify-content: center; font-size: 18px; font-weight: 700; color: #fff;
+    margin: 0 auto 10px; font-family: var(--font-h); }
+  .scr-profile-name { font-family: var(--font-h); font-size: 15px; font-weight: 700; color: var(--text); }
+  .scr-profile-cnpj { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+  .scr-profile-stats { display: flex; justify-content: center; gap: 20px; margin-bottom: 18px;
+    padding: 12px; background: rgba(78,159,255,0.04); border-radius: 10px; border: 1px solid var(--border); }
+  .scr-stat { text-align: center; }
+  .scr-stat-n { font-family: var(--font-h); font-size: 18px; font-weight: 700; color: var(--accent); }
+  .scr-stat-l { font-size: 9px; color: var(--text-muted); margin-top: 2px; }
+  .scr-profile-menu { display: flex; flex-direction: column; gap: 2px; }
+  .scr-p-item { padding: 10px 0; font-size: 12px; color: var(--text-sub); border-bottom: 1px solid rgba(78,159,255,0.05); }
+  .scr-p-logout { color: #ef4444; border: none; }
 
   @media (max-width: 768px) {
     nav { padding: 0 20px; } .nav-links { display: none; }
